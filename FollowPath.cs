@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-    // DeclaraÁ„o de vari·veis.
+    // Declara√ß√£o de vari√°veis.
     Transform goal;
     float speed = 10f;
     float accuracy = 1f;
@@ -24,7 +24,7 @@ public class FollowPath : MonoBehaviour
         currentNode = wps[0];
     }
 
-    // MÈtodos para cada bot„o.
+    // M√©todos para cada bot√£o.
     public void GoToHeli()
     {
         g.AStar(currentNode, wps[1]);
@@ -50,12 +50,12 @@ public class FollowPath : MonoBehaviour
 
         // Atribui o node atual.
         currentNode = g.getPathPoint(currentWP);
-        // Se estiver prÛximo o bastante, vai para o prÛximo node.
+        // Se estiver pr√≥ximo o bastante, vai para o pr√≥ximo node.
         if (Vector3.Distance(g.getPathPoint(currentWP).transform.position, transform.position) < accuracy)
         {
             currentWP++;
         }
-        // Enquanto o node atual for menor que o tamanho de nodes do caminho, move o player.
+        // Enquanto o node atual for menor que o tamanho de nodes do caminho, move o player com Translate e rotaciona com Slerp.
         if (currentWP < g.getPathLength())
         {
             goal = g.getPathPoint(currentWP).transform;
